@@ -53,7 +53,7 @@ if [ $( varHasVal $data ) == "1" ]; then
 	branch="${branch:1}";
 	echo -n ${reset}"Commit Message : "${aqua};read msg;
 	git status;git add .;
-	git commit -am "$msg";git push origin $branch 
+	git commit -am "$msg";git push origin $branch;echo "Commited Successful ✅"
 else
 	echo {$red}"Error "${reset}": This is not a Git Repo"
 	exit;
