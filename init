@@ -1,0 +1,93 @@
+#!/bin/bash
+# This will set the git helper scripts for the first time
+
+# color
+# Foreground colors
+  black=$(tput setaf 0)        #000000
+  maroon=$(tput setaf 1)       #800000
+  green=$(tput setaf 2)        #008000
+  olive=$(tput setaf 3)        #808000
+  navy=$(tput setaf 4)         #000080
+  purple=$(tput setaf 5)       #800080
+  teal=$(tput setaf 6)         #008080
+  silver=$(tput setaf 7)       #c0c0c0
+  gray=$(tput setaf 8)         #808080
+  red=$(tput setaf 9)          #ff0000
+  lime=$(tput setaf 10)        #00ff00
+  yellow=$(tput setaf 11)      #ffff00
+  blue=$(tput setaf 12)        #0000ff
+  magenta=$(tput setaf 13)     #ff00ff
+  aqua=$(tput setaf 14)        #00ffffo
+  white=$(tput setaf 15)       #ffffff
+  red=`tput setaf 1`
+  green=`tput setaf 2`
+  reset=`tput sgr0`
+
+# echo "${red}red text ${green}green text${reset}"
+
+function fileExist(){
+	if [ -f  "$1" ]; then 
+		echo 1
+	else
+		echo 0
+	fi
+}
+
+function dirExist(){
+	if [ -d "$1" ]; then
+		echo 1
+	else
+		echo 0
+	fi
+}
+
+function varHasVal(){
+	if [ -z $1 ] ; then
+		echo 0
+	else
+		echo 1
+	fi
+}
+
+
+# =======================================
+
+echo -n ${reset}"Checking The Scripts "
+sleep .3
+echo -n 🔥
+sleep .3
+echo -n 🔥
+sleep .3
+echo 🔥
+if [ $(fileExist "./clone") == "1" ]; then
+	echo ${aqua}"Clone${reset} Script${green} Exist ✅"
+	sleep .3
+else
+	echo ${red}"Clone${reset} Script ${red}Not Exist"
+	exit;
+fi
+
+if [ $(fileExist "./push") == "1" ]; then
+	echo ${aqua}"PUSH${reset} Script ${green} Exist ✅"
+	sleep .3
+else
+	echo ${red}"Clone${reset} Script${red} Not Exist"
+	exit;
+fi
+echo -n ${red}
+cp ./clone /usr/local/bin/clone
+cp ./push /usr/local/bin/push
+echo -n ${reset}
+
+if [ $(fileExist "/usr/local/bin/clone") == "1" ]; then
+	echo ${reset}"Clone Script ${green}Active"
+else
+	echo ${reset}"Clone Script ${red}Inactive"
+fi;
+
+
+if [ $(fileExist "/usr/local/bin/push") == "1" ]; then
+	echo ${reset}"Push Script ${green}Active"
+else
+	echo ${reset}"Push Script ${red}Inactive"
+fi;
