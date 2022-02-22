@@ -51,6 +51,13 @@ data=$(git status);
 if [ $( varHasVal $data ) == "1" ]; then
 	branch=$(git branch);
 	branch="${branch:1}";
+	if [ $( varHasVal $1 ) == "1" ]; then
+		git status;git add .;
+		git commit -am "$1";
+		git push origin $branch;
+		echo "Commited Successful ✅"
+		exit;
+	fi
 	echo -n ${reset}"Commit Message : "${aqua};read msg;
 	git status;git add .;
 	git commit -am "$msg";git push origin $branch;echo "Commited Successful ✅"
