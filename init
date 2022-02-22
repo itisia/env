@@ -76,18 +76,27 @@ else
 fi
 
 if [ $(fileExist "./lr") == "1" ]; then
-	echo ${aqua}"LR (last run)${reset} Script ${green} Exist ✅"
+	echo ${aqua}"LR (latest run)${reset} Script ${green} Exist ✅"
 	sleep .3
 else
-	echo ${red}"LR (last run)${reset} Script${red} Not Exist"
+	echo ${red}"LR (latest run)${reset} Script${red} Not Exist"
 	exit;
 fi
 
+
+if [ $(fileExist "./le") == "1" ]; then
+	echo ${aqua}"LE (latest edit)${reset} Script ${green} Exist ✅"
+	sleep .3
+else
+	echo ${red}"LE (latest edit)${reset} Script${red} Not Exist"
+	exit;
+fi
 
 echo -n ${red}
 cp ./clone /usr/local/bin/clone
 cp ./push /usr/local/bin/push
 cp ./lr /usr/local/bin/lr
+cp ./le /usr/local/bin/le
 echo -n ${reset}
 
 if [ $(fileExist "/usr/local/bin/clone") == "1" ]; then
@@ -105,7 +114,14 @@ fi;
 
 
 if [ $(fileExist "/usr/local/bin/lr") == "1" ]; then
-	echo ${reset}"lr (last run) Script ${green}Active"
+	echo ${reset}"lr (latest run) Script ${green}Active"
 else
-	echo ${reset}"lr (last run) Script ${red}Inactive"
+	echo ${reset}"lr (latest run) Script ${red}Inactive"
+fi;
+
+
+if [ $(fileExist "/usr/local/bin/le") == "1" ]; then
+	echo ${reset}"le (latest edit) Script ${green}Active"
+else
+	echo ${reset}"le (latest edit) Script ${red}Inactive"
 fi;
