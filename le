@@ -37,9 +37,9 @@ function fileExist(){
 
 no=$( ls -1 -d */ |wc -l)
 le=$( ls -1 | grep "l$no" )
-cd $le
+cd "$le"
 searchstring="l$no-"
 # this will remove the seacrh string from the le
 name=${le#*$searchstring}
 run=$( ls -1 | grep "$name" )
-gedit ./$run
+gedit ./"$run"
