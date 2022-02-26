@@ -24,7 +24,13 @@
   reset=`tput sgr0`
 
 # echo "${red}red text ${green}green text${reset}"
-
+function varHasVal(){
+	if [ -z $1 ] ; then
+		echo 0
+	else
+		echo 1
+	fi
+}
 
 
 function fileExist(){
@@ -41,8 +47,8 @@ cd "$le"
 searchstring="l$no-"
 # this will remove the seacrh string from the le
 name=${le#*$searchstring}
-if [ $( fileExist "./run" ) == "0" ]; then
-	echo "${red}Error${reset} : run script Not Found !";
+if [ $( varHasVal $name ) == "0" ]; then
+	echo "${red}Error${reset} : Program File Not Found !"
 	exit;
 fi;
 run=$( ls -1 | grep "$name" )
